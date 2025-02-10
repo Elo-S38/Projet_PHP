@@ -1,3 +1,30 @@
+<?php
+require 'config.php';
+
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+// Récupérer la liste des bénévoles
+$stmt_benevoles = $pdo->query("SELECT id, nom FROM benevoles ORDER BY nom");
+$stmt_benevoles->execute();
+$benevoles = $stmt_benevoles->fetchAll();
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $nom = $_POST["nom"];
+    $email = $_POST["email"];
+    $mot_de_passe = $_POST["mot_de_passe"]; 
+    $role = $_POST["role"];  
+
+    // Insérer la collecte avec le bénévole sélectionné
+    $stmt = $pdo->prepare("INSERT INTO benevoles (`nom`, `email`, `mot_de_passe`, `role`) VALUES (?, ?, ?, ?)");
+    if (!$stmt->execute([$nom, $email, $mot_de_passe, $role ])) {
+        die('Erreur lors de l\'insertion dans la base de données.');
+    }
+
+    header("Location: user_add.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
