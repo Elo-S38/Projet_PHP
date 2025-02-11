@@ -11,6 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->execute([$email]);
     $user = $stmt->fetch();
 
+    
+
     // Vérification du mot de passe (si hashé en BDD)
     if ($user && password_verify($password, $user['mot_de_passe'])) {
         $_SESSION["user_id"] = $user["id"];
