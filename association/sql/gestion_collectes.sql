@@ -130,7 +130,7 @@ ALTER TABLE `dechets_collectes`
 -- AUTO_INCREMENT pour la table `benevoles`
 --
 ALTER TABLE `benevoles`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `collectes`
