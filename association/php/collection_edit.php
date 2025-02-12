@@ -28,10 +28,15 @@ $benevoles = $stmt_benevoles->fetchAll();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $date = $_POST["date"];
     $lieu = $_POST["lieu"];
-    $benevole_id = $_POST["benevole"]; // Récupérer l'ID du bénévole sélectionné
+    $benevole_id = $_POST["benevole"]; // Récupérer l'ID du bénévole 
+	$type_dechet = $_POST["type_dechet"];
+	$quantite_kg = $_POST["quantite_kg"];
 
     $stmt = $pdo->prepare("UPDATE collectes SET date_collecte = ?, lieu = ?, id_benevole = ? WHERE id = ?");
     $stmt->execute([$date, $lieu, $benevole_id, $id]);
+
+	$stmt2 = $pdo->prepare("UPDATE dechets_collectes SET type_dechet = ?, quantite_kg = ? WHERE id = ?");
+	$stmt->execute([$type_dechet, $quantite_kg, $id_dechet]);
 
     header("Location: collection_list.php");
     exit;
@@ -98,6 +103,37 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <?php endforeach; ?>
                     </select>
                 </div>
+				<div>
+                    <label class="block text-sm font-medium text-gray-700">Type De Déchet :</label>
+					<div class="space-y-2">
+						<label class="flex items-center space-x-2">
+							<input type="checkbox" name="dechets[]" value="plastique" class="form-checkbox">
+							<span>Plastique</span>
+							<input type="number" name="poids_plastique" step="0.1" placeholder="Poids en kg" class="ml-2 p-1 border rounded">
+						</label>
+						<label class="flex items-center space-x-2">
+							<input type="checkbox" name="dechets[]" value="verre" class="form-checkbox">
+							<span>Verre</span>
+							<input type="number" name="poids_verre" step="0.1" placeholder="Poids en kg" class="ml-2 p-1 border rounded">
+						</label>
+						<label class="flex items-center space-x-2">
+							<input type="checkbox" name="dechets[]" value="metal" class="form-checkbox">
+							<span>Métal</span>
+							<input type="number" name="poids_metal" step="0.1" placeholder="Poids en kg" class="ml-2 p-1 border rounded">
+						</label>
+						<label class="flex items-center space-x-2">
+							<input type="checkbox" name="dechets[]" value="papier" class="form-checkbox">
+							<span>Papier</span>
+							<input type="number" name="poids_papier" step="0.1" placeholder="Poids en kg" class="ml-2 p-1 border rounded">
+						</label>
+						<label class="flex items-center space-x-2">
+							<input type="checkbox" name="dechets[]" value="organique" class="form-checkbox">
+							<span>Déchets organiques</span>
+							<input type="number" name="poids_organique" step="0.1" placeholder="Poids en kg" class="ml-2 p-1 border rounded">
+						</label>
+					</div>
+                </div>
+				
                 <div class="flex justify-end space-x-4">
                     <a href="collection_list.php" class="bg-gray-500 text-white px-4 py-2 rounded-lg">Annuler</a>
                     <button type="submit" class="bg-cyan-200 text-white px-4 py-2 rounded-lg">Modifier</button>
@@ -106,6 +142,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
     </div>
 </div>
-
 </body>
 </html>

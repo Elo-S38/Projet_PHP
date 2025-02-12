@@ -13,6 +13,12 @@ try {
     $query->execute();
 
     $collectes = $stmt->fetchAll();
+
+	$stmt2 = $stmt = $pdo->query("
+	SELECT id, id_collecte, type_dechet, quantite_kg
+	FROM dechets_collectes
+	");
+	$dechets = $stmt2->fetchAll();
     $admin = $query->fetch(PDO::FETCH_ASSOC);
     $adminNom = $admin ? htmlspecialchars($admin['nom']) : 'Aucun administrateur trouvé';
 
@@ -95,27 +101,58 @@ error_reporting(E_ALL);
                     <th class="py-3 px-4 text-left">Date</th>
                     <th class="py-3 px-4 text-left">Lieu</th>
                     <th class="py-3 px-4 text-left">Bénévole Responsable</th>
+					<th class="py-3 px-4 text-left">Type de déchet</th>
+					<th class="py-3 px-4 text-left">Quantité déchet (en kg)</th>
                     <th class="py-3 px-4 text-left">Actions</th>
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-300">
                 <?php foreach ($collectes as $collecte) : ?>
-                    <tr class="hover:bg-gray-100 transition duration-200">
-                        <td class="py-3 px-4"><?= date('d/m/Y', strtotime($collecte['date_collecte'])) ?></td>
-                        <td class="py-3 px-4"><?= htmlspecialchars($collecte['lieu']) ?></td>
-                        <td class="py-3 px-4">
-                            <?= $collecte['nom'] ? htmlspecialchars($collecte['nom']) : 'Aucun bénévole' ?>
-                        </td>
-                        <td class="py-3 px-4 flex space-x-2">
-                            <a href="collection_edit.php?id=<?= $collecte['id'] ?>" class="bg-cyan-200 hover:bg-cyan-600 text-white px-4 py-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-                                ✏️ Modifier
-                            </a>
-                            <a href="collection_delete.php?id=<?= $collecte['id'] ?>" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette collecte ?');">
-                                🗑️ Supprimer
-                            </a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
+					<tr class="hover:bg-gray-100 transition duration-200">
+						<td class="py-3 px-4"><?= date('d/m/Y', strtotime($collecte['date_collecte'])) ?></td>
+						<td class="py-3 px-4"><?= htmlspecialchars($collecte['lieu']) ?></td>
+						<td class="py-3 px-4">
+							<?= $collecte['nom'] ? htmlspecialchars($collecte['nom']) : 'Aucun bénévole' ?>
+						</td>
+
+						<!-- Concatenate all 'type_dechet' values for the same collecte into one column -->
+						<td class="py-3 px-4">
+							<?php
+							$dechetTypes = [];
+							foreach ($dechets as $dechet) :
+								if ($dechet["id_collecte"] === $collecte["id"] && !empty($dechet["type_dechet"])) :
+									$dechetTypes[] = $dechet["type_dechet"];
+								endif;
+							endforeach;
+							// Display all type_dechet values separated by commas or line breaks
+							echo implode('<br>', $dechetTypes);
+							?>
+						</td>
+
+						<!-- Concatenate all 'quantite_kg' values for the same collecte into one column -->
+						<td class="py-3 px-4">
+							<?php
+							$quantites = [];
+							foreach ($dechets as $dechet) :
+								if ($dechet["id_collecte"] === $collecte["id"] && !empty($dechet["quantite_kg"])) :
+									$quantites[] = $dechet["quantite_kg"];
+								endif;
+							endforeach;
+							// Display all quantite_kg values separated by commas or line breaks
+							echo implode('<br>', $quantites);
+							?>
+						</td>
+
+						<td class="py-3 px-4 flex space-x-2">
+							<a href="collection_edit.php?id=<?= $collecte['id'] ?>" class="bg-cyan-200 hover:bg-cyan-600 text-white px-4 py-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+								✏️ Modifier
+							</a>
+							<a href="collection_delete.php?id=<?= $collecte['id'] ?>" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette collecte ?');">
+								🗑️ Supprimer
+							</a>
+						</td>
+					</tr>
+				<?php endforeach; ?>
                 </tbody>
             </table>
         </div>
