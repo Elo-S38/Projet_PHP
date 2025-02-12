@@ -24,26 +24,42 @@ $stmt_benevoles = $pdo->prepare("SELECT id, nom FROM benevoles ORDER BY nom");
 $stmt_benevoles->execute();
 $benevoles = $stmt_benevoles->fetchAll();
 
-// Récupérer la liste des dechets
-$stmt = $pdo->prepare("SELECT * FROM collectes-dechets WHERE id_collecte = ?");
-$stmt->execute([$id]);
-$collecte = $stmt->fetch();
+$stmt_dechets = $pdo->prepare("SELECT type_dechet, quantite_kg FROM dechets_collectes WHERE id_collecte = ?");
+$stmt_dechets->execute([$id]);
+$dechets = $stmt_dechets->fetchAll();
 
-
+foreach ($dechets as $dechet)
+{
+	if ($dechet["type_dechet"] === "plastique")
+	{
+		$plastique = $dechet;
+	}
+	if ($dechet["type_dechet"] === "verre")
+	{
+		$verre = $dechet;
+	}
+	if ($dechet["type_dechet"] === "métal")
+	{
+		$metal = $dechet;
+	}
+	if ($dechet["type_dechet"] === "organique")
+	{
+		$organique = $dechet;
+	}
+	if ($dechet["type_dechet"] === "papier")
+	{
+		$papier = $dechet;
+	}
+}
 
 // Mettre à jour la collecte
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $date = $_POST["date"];
     $lieu = $_POST["lieu"];
     $benevole_id = $_POST["benevole"]; // Récupérer l'ID du bénévole 
-	$type_dechet = $_POST["type_dechet"];
-	$quantite_kg = $_POST["quantite_kg"];
 
     $stmt = $pdo->prepare("UPDATE collectes SET date_collecte = ?, lieu = ?, id_benevole = ? WHERE id = ?");
     $stmt->execute([$date, $lieu, $benevole_id, $id]);
-
-	$stmt2 = $pdo->prepare("UPDATE dechets_collectes SET type_dechet = ?, quantite_kg = ? WHERE id = ?");
-	$stmt->execute([$type_dechet, $quantite_kg, $id_dechet]);
 
     header("Location: collection_list.php");
     exit;
@@ -114,29 +130,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <label class="block text-sm font-medium text-gray-700">Type De Déchet :</label>
 					<div class="space-y-2">
 						<label class="flex items-center space-x-2">
-							<input type="checkbox" name="dechets[]" value="plastique" class="form-checkbox">
+							<input type="checkbox" name="dechets[]" value="plastique" class="form-checkbox" <?php if ($plastique) {echo 'checked';}?> >
 							<span>Plastique</span>
-							<input type="number" name="poids_plastique" step="0.1" placeholder="Poids en kg" class="ml-2 p-1 border rounded">
+							<input type="number" name="poids_plastique" step="0.1" placeholder="Poids en kg" class="ml-2 p-1 border rounded" value="<?= $plastique ? $plastique["quantite_kg"] : NULL ?>">
 						</label>
 						<label class="flex items-center space-x-2">
-							<input type="checkbox" name="dechets[]" value="verre" class="form-checkbox">
+							<input type="checkbox" name="dechets[]" value="verre" class="form-checkbox" <?php if ($verre) {echo 'checked';}?>>
 							<span>Verre</span>
-							<input type="number" name="poids_verre" step="0.1" placeholder="Poids en kg" class="ml-2 p-1 border rounded">
+							<input type="number" name="poids_verre" step="0.1" placeholder="Poids en kg" class="ml-2 p-1 border rounded" value="<?= $verre ? $verre["quantite_kg"] : NULL ?>">
 						</label>
 						<label class="flex items-center space-x-2">
-							<input type="checkbox" name="dechets[]" value="metal" class="form-checkbox">
+							<input type="checkbox" name="dechets[]" value="métal" class="form-checkbox" <?php if ($metal) {echo 'checked';}?>>
 							<span>Métal</span>
-							<input type="number" name="poids_metal" step="0.1" placeholder="Poids en kg" class="ml-2 p-1 border rounded">
+							<input type="number" name="poids_metal" step="0.1" placeholder="Poids en kg" class="ml-2 p-1 border rounded" value="<?= $metal ? $metal["quantite_kg"] : NULL ?>">
 						</label>
 						<label class="flex items-center space-x-2">
-							<input type="checkbox" name="dechets[]" value="papier" class="form-checkbox">
+							<input type="checkbox" name="dechets[]" value="papier" class="form-checkbox" <?php if ($papier) {echo 'checked';}?>>
 							<span>Papier</span>
-							<input type="number" name="poids_papier" step="0.1" placeholder="Poids en kg" class="ml-2 p-1 border rounded">
+							<input type="number" name="poids_papier" step="0.1" placeholder="Poids en kg" class="ml-2 p-1 border rounded" value="<?= $papier ? $papier["quantite_kg"] : NULL ?>">
 						</label>
 						<label class="flex items-center space-x-2">
-							<input type="checkbox" name="dechets[]" value="organique" class="form-checkbox">
+							<input type="checkbox" name="dechets[]" value="organique" class="form-checkbox" <?php if ($organique) {echo 'checked';}?>>
 							<span>Déchets organiques</span>
-							<input type="number" name="poids_organique" step="0.1" placeholder="Poids en kg" class="ml-2 p-1 border rounded">
+							<input type="number" name="poids_organique" step="0.1" placeholder="Poids en kg" class="ml-2 p-1 border rounded" value="<?= $organique ? $organique["quantite_kg"] : NULL ?>">
 						</label>
 					</div>
                 </div>
