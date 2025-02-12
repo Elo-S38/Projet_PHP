@@ -39,7 +39,7 @@ CREATE TABLE `benevoles` (
 -- Déchargement des données de la table `benevoles`
 --
 
-INSERT INTO `benevoles` (`id`, `nom`, `email`, `mot_de_passe`, `role`) VALUES
+INSERT INTO `git` (`id`, `nom`, `email`, `mot_de_passe`, `role`) VALUES
 (1, 'Alice Dupont', 'alice.dupont@example.com', '5504b4f70ca78f97137ff8ad5f910248', 'admin'),
 (2, 'Bob Martin', 'bob.martin@example.com', '2e248e7a3b4fbaf2081b3dff10ee402b', 'participant'),
 (3, 'Charlie Dubois', 'charlie.dubois@example.com', '9148b120a413e9e84e57f1231f04119a', 'participant');

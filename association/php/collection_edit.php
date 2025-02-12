@@ -24,6 +24,13 @@ $stmt_benevoles = $pdo->prepare("SELECT id, nom FROM benevoles ORDER BY nom");
 $stmt_benevoles->execute();
 $benevoles = $stmt_benevoles->fetchAll();
 
+// Récupérer la liste des dechets
+$stmt = $pdo->prepare("SELECT * FROM collectes-dechets WHERE id_collecte = ?");
+$stmt->execute([$id]);
+$collecte = $stmt->fetch();
+
+
+
 // Mettre à jour la collecte
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $date = $_POST["date"];
