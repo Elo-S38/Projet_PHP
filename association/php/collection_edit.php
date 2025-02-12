@@ -25,14 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (!empty($_POST['dechets'])) {
         foreach ($_POST['dechets'] as $type) {
             $poids = $_POST["poids_" . $type] ?? 0;
-
             if ($poids > 0) {
                 $stmt = $pdo->prepare("INSERT INTO dechets_collectes (id_collecte, type_dechet, quantite_kg) VALUES (?, ?, ?)");
                 $stmt->execute([$id, $type, $poids]);
             }
         }
     }
-
     // Rediriger vers la liste des collectes
     header("Location: collection_list.php");
     exit;
@@ -81,19 +79,6 @@ foreach ($dechets as $dechet) {
     }
 }
 
-// Vérifier si le formulaire de modification a été soumis
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $date = $_POST["date"]; // Récupération de la date soumise
-    $lieu = $_POST["lieu"]; // Récupération du lieu soumis
-    $benevole_id = $_POST["benevole"]; // Récupération de l'ID du bénévole sélectionné
-
-    // Mise à jour des informations de la collecte en base de données
-    $stmt = $pdo->prepare("UPDATE collectes SET date_collecte = ?, lieu = ?, id_benevole = ? WHERE id = ?");
-    $stmt->execute([$date, $lieu, $benevole_id, $id]);
-
-    header("Location: collection_list.php"); // Redirection après mise à jour
-    exit;
-}
 ?>
 
 <!DOCTYPE html>
