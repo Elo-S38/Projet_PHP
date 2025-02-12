@@ -15,6 +15,26 @@ try {
     exit;
 }
 
+$stmt2 = $pdo->query("
+	SELECT d.quantite_kg, d.id_collecte, c.id, c.id_benevole, b.id
+	FROM collectes c
+	JOIN benevoles b ON b.id = c.id_benevole
+	JOIN dechets_collectes d ON d.id_collecte = c.id
+	");
+
+$total = $stmt2->fetchAll();
+
+foreach ($total as $tot) {
+    $idBenevole = $tot['id_benevole'];
+    $quantiteKg = $tot['quantite_kg'];
+    
+    // Sum the quantities by id_benevole
+    if (!isset($sumByBenevole[$idBenevole])) {
+        $sumByBenevole[$idBenevole] = 0;
+    }
+    $sumByBenevole[$idBenevole] += $quantiteKg;
+}
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -67,6 +87,7 @@ error_reporting(E_ALL);
                     <th class="py-3 px-4 text-left">Nom</th>
                     <th class="py-3 px-4 text-left">Email</th>
                     <th class="py-3 px-4 text-left">Rôle</th>
+					<th class="py-3 px-4 text-left">Poids total déchets ramassées (en kg)</th>
                     <th class="py-3 px-4 text-left">Actions</th>
                 </tr>
                 </thead>
@@ -78,6 +99,7 @@ error_reporting(E_ALL);
                         <td class="py-3 px-4">
                             <?= $benevole['role'] ? htmlspecialchars($benevole['role']) : 'Aucun rôle' ?>
                         </td>
+						<td class="py-3 px-4"> <?= isset($sumByBenevole[$benevole["id"]]) ? $sumByBenevole[$benevole["id"]] : 0 ?> </td>
                         <td class="py-3 px-4 flex space-x-2">
                             <a href="volunteer_edit.php?id=<?= $benevole['id'] ?>" class="bg-cyan-200 hover:bg-cyan-600 text-white px-4 py-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
                                 ✏️ Modifier
