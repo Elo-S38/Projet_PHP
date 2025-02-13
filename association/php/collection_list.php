@@ -96,33 +96,33 @@ error_reporting(E_ALL);
         <!-- Cartes d'informations -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
             <!-- Nombre total de collectes -->
-            <div class="bg-white p-6 rounded-lg shadow-lg w-64">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-48">
 
                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Total des Collectes</h3>
                 <p class="text-3xl font-bold text-blue-600"><?= count($collectes) ?></p>
             </div>
             <!-- Dernière collecte -->
-            <div class="bg-white p-6 rounded-lg shadow-lg w-64">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-48">
 
                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Dernière Collecte</h3>
                 <p class="text-lg text-gray-600"><?= htmlspecialchars($collectes[0]['lieu']) ?></p>
                 <p class="text-lg text-gray-600"><?= date('d/m/Y', strtotime($collectes[0]['date_collecte'])) ?></p>
             </div>
             <!-- Bénévole Responsable -->
-            <div class="bg-white p-6 rounded-lg shadow-lg w-64">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-48">
 
                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Bénévole Admin</h3>
                 <p class="text-lg text-gray-600"><?= $adminNom ?></p>
             </div>
             <!-- Total des dechets collectés -->
-            <div class="bg-white p-6 rounded-lg shadow-lg w-64">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-48">
 
                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Total des déchets collectés</h3>
                 <p class="text-lg text-gray-600"><?= round($poids_total[0]["SUM(quantite_kg)"], 2) . " kg"?></p>
             </div>
             <!-- Totaux des dechets collectés par type de déchets-->
-            <div class="bg-white p-6 rounded-lg shadow-lg w-80">
-                <h3 class="text-lg font-semibold text-gray-800 mb-3">Totaux des dechets collectés par type de déchets</h3>
+            <div class="bg-white p-6 rounded-lg shadow-lg w-48">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">Totaux des dechets par type</h3>
                 <p class="text-lg text-gray-600"><?php foreach ($sumByTypeDechet as $type_dechet => $quantite){
                     echo $type_dechet . ": " . $quantite . " kg" . "<br>";
                 } ?></p>
