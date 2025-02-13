@@ -159,7 +159,7 @@ error_reporting(E_ALL);
 							echo implode('<br>', $quantites);
 							?>
 						</td>
-						
+
 						<td class="py-3 px-4"><?= array_sum($quantites) ?></td>
 
 						<td class="py-3 px-4 flex space-x-2">
