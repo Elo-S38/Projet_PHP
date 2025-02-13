@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         die('Erreur lors de l\'insertion dans la base de données.');
     }
 
-    header("Location: user_add.php");
+    header("Location: volunteer_list.php");
     exit;
 }
 ?>
