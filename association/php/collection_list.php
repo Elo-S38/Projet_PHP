@@ -26,6 +26,18 @@ try {
 		");
 	$poids_total = $stmt3->fetchAll();
 
+	foreach ($dechets as $dechet) {
+		$type_dechet = $dechet['type_dechet'];
+		$quantiteKg = $dechet['quantite_kg'];
+		
+		// Sum the quantities by type_dechet
+		if (!isset($sumByTypeDechet[$type_dechet])) {
+			$sumByTypeDechet[$type_dechet] = 0;
+		}
+		$sumByTypeDechet[$type_dechet] += $quantiteKg;
+	}
+
+	var_dump($sumByTypeDechet);
 
     $admin = $query->fetch(PDO::FETCH_ASSOC);
     $adminNom = $admin ? htmlspecialchars($admin['nom']) : 'Aucun administrateur trouvé';
