@@ -71,7 +71,7 @@ error_reporting(E_ALL);
 <div class="flex h-screen">
     <!-- Barre de navigation -->
     <div class="bg-stone-200 text-black w-64 p-6">
-    <img src="logo transparent littoclean.png" alt="logoLC">
+    <img src="Logo LC.png" alt="logoLC">
         <h2 class="text-2xl font-bold mb-6"></h2>
             <li><a href="collection_list.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-tachometer-alt mr-3"></i> Tableau de bord</a></li>
             <li><a href="collection_add.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-plus-circle mr-3"></i> Ajouter une collecte</a></li>
@@ -129,7 +129,7 @@ error_reporting(E_ALL);
 <div class="bg-cyan-600 opacity-85 p-6 rounded-lg shadow-lg flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6 col-span-4 w-full">
     <div class="flex-1">
         <h3 class="text-3xl font-semibold text-white mb-3 text-center">Totaux des déchets collectés par type</h3>
-        <p class="text-lg text-white text-center">
+        <p class="text-xl font-semibold text-white text-center">
             <?php
             // Affichage des quantités par type de déchet
             foreach ($sumByTypeDechet as $type_dechet => $quantite) {
@@ -166,21 +166,24 @@ error_reporting(E_ALL);
             }]
         },
         options: {
-            responsive: false,
-            plugins: {
-                legend: {
-                    position: 'bottom', // Légende en bas (optionnel)
-                    labels: {
-                        color:'black',
+        responsive: false,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    color: 'black',
+                    font: {
+                        size: 20 // Taille de police des légendes
                     }
-                },
-                title: {
-                    display: false,
-                    text: 'Répartition des types de déchets collectés'
                 }
+            },
+            title: {
+                display: false,
+                text: 'Répartition des types de déchets collectés'
             }
         }
-    });
+    }
+});
 </script>
 
     </div>
