@@ -62,23 +62,28 @@ error_reporting(E_ALL);
     <title>Liste des Collectes</title>
     <head>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Lora:wght@400;700&family=Montserrat:wght@300;400;700&family=Open+Sans:wght@300;400;700&family=Poppins:wght@300;400;700&family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;700&family=Nunito:wght@300;400;700&family=Merriweather:wght@300;400;700&family=Oswald:wght@300;400;700&display=swap" rel="stylesheet">
-    </head>
+   
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+
 </head>
-<body class="bg-white-100 text-gray-900">
+<body class="bg-stone-200 text-gray-900 ">
+
 <div class="flex h-screen">
     <!-- Barre de navigation -->
-    <div class="bg-stone-200 text-black w-64 p-6">
-    <img src="Logo LC.png" alt="logoLC">
+    <div class="bg-stone-300 text-black w-64 p-6">
+    <img src="Logo.png" alt="logoLC">
         <h2 class="text-2xl font-bold mb-6"></h2>
-            <li><a href="collection_list.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-tachometer-alt mr-3"></i> Tableau de bord</a></li>
+        <ul class="list-none space-y-5">
+        
+            <li><a href="collection_list.php" class="list-none flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-tachometer-alt mr-3"></i> Tableau de bord</a></li>
             <li><a href="collection_add.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-plus-circle mr-3"></i> Ajouter une collecte</a></li>
             <li><a href="volunteer_list.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fa-solid fa-list mr-3"></i> Liste des bénévoles</a></li>
             <li><a href="user_add.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-user-plus mr-3"></i> Ajouter un bénévole</a></li>
             <li><a href="my_account.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-cogs mr-3"></i> Mon compte</a></li>
-        <div class="mt-6">
+</ul>
+            <div class="mt-6">
             <button onclick="logout()" class="w-full bg-red-500 hover:bg-red-800 text-white py-2 rounded-lg shadow-md">
                 Déconnexion
             </button>
@@ -102,46 +107,46 @@ error_reporting(E_ALL);
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
     <!-- Nombre total de collectes -->
     <div class="bg-cyan-600 opacity-85 p-6 rounded-lg shadow-lg w-full">
-        <h3 class="text-2xl font-semibold text-white mb-3 text-center">Total des Collectes</h3>
-        <p class="text-3xl font-bold text-white text-center"><?= count($collectes) ?></p>
+        <h3 class="text-2xl font-semibold text-cyan-1000 mb-3 text-center">Total des Collectes</h3>
+        <p class="text-4xl font-bold text-white text-center"><?= count($collectes) ?></p>
     </div>
 
     <!-- Dernière collecte -->
     <div class="bg-cyan-600 opacity-85 p-6 rounded-lg shadow-lg w-full">
-        <h3 class="text-2xl font-semibold text-white mb-3 text-center">Dernière Collecte</h3>
-        <p class="text-lg text-white text-center"><?= htmlspecialchars($collectes[0]['lieu']) ?></p>
-        <p class="text-lg text-white text-center"><?= date('d/m/Y', strtotime($collectes[0]['date_collecte'])) ?></p>
+        <h3 class="text-2xl font-semibold text-cyan-1000 mb-3 text-center">Dernière Collecte</h3>
+        <p class="text-3xl text-white text-center"><?= htmlspecialchars($collectes[0]['lieu']) ?></p>
+        <p class="text-2xl text-white text-center"><?= date('d/m/Y', strtotime($collectes[0]['date_collecte'])) ?></p>
     </div>
 
     <!-- Bénévole Responsable -->
     <div class="bg-cyan-600 opacity-85 p-6 rounded-lg shadow-lg w-full">
-        <h3 class="text-2xl font-semibold text-white mb-3 text-center">Bénévole Admin</h3>
-        <p class="text-lg text-white text-center"><?= $adminNom ?></p>
+        <h3 class="text-2xl font-semibold text-cyan-1000 mb-3 text-center">Bénévole Admin</h3>
+        <p class="text-3xl text-white text-center"><?= $adminNom ?></p>
     </div>
 
     <!-- Total des déchets collectés -->
     <div class="bg-cyan-600 opacity-85 p-6 rounded-lg shadow-lg w-full">
-        <h3 class="text-2xl font-semibold text-white mb-3 text-center">Total des déchets collectés</h3>
-        <p class="text-lg text-white text-center"><?= round($poids_total[0]["SUM(quantite_kg)"], 2) . " kg"?></p>
+        <h3 class="text-2xl font-semibold text-cyan-1000 mb-3 text-center">Total des déchets collectés</h3>
+        <p class="text-4xl text-white text-center"><?= round($poids_total[0]["SUM(quantite_kg)"], 2) . " kg"?></p>
     </div>
 
 <!-- Totaux des déchets collectés par type de déchets et Donut (en utilisant Flexbox) -->
 <div class="bg-cyan-600 opacity-85 p-6 rounded-lg shadow-lg flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6 col-span-4 w-full">
     <div class="flex-1">
-        <h3 class="text-3xl font-semibold text-white mb-3 text-center">Totaux des déchets collectés par type</h3>
-        <p class="text-xl font-semibold text-white text-center">
+        <h3 class="text-3xl font-semibold text-cyan-1000 mb-3 text-center">Totaux des déchets collectés par type</h3>
+        <div class="flex flex-col items-center space-y-3">
             <?php
             // Affichage des quantités par type de déchet
             foreach ($sumByTypeDechet as $type_dechet => $quantite) {
-                echo $type_dechet . ": " . $quantite . " kg" . "<br>";
+                echo "<p class='text-2xl font-semibold text-white'>$type_dechet : $quantite kg</p>";
             }
             ?>
-        </p>
+        </div>
     </div>
     
-    <div class="flex-1">
-        <div class="w-full h-full flex justify-center items-center">
-            <canvas id="monDonut" width="300" height="300" > </canvas>
+    <div class="flex-1 pb-0">
+        <div class="w-full h-full  flex justify-center items-center">
+            <canvas id="monDonut" width="350" height="250" > </canvas>
         </div>
     </div>
 </div>
@@ -169,13 +174,14 @@ error_reporting(E_ALL);
         responsive: false,
         plugins: {
             legend: {
-                position: 'bottom',
+                position: 'left',
                 labels: {
                     color: 'black',
                     font: {
                         size: 20 // Taille de police des légendes
                     }
                 }
+                
             },
             title: {
                 display: false,
@@ -197,9 +203,9 @@ error_reporting(E_ALL);
                     <th class="py-3 px-4 text-center">Date</th>
                     <th class="py-3 px-4 text-center">Lieu</th>
                     <th class="py-3 px-4 text-center">Bénévole Responsable</th>
-					<th class="py-3 px-4 text-center">Type de déchet</th>
-					<th class="py-3 px-4 text-center">Quantité déchet (en kg)</th>
-					<th class="py-3 px-4 text-center">Poids Total des déchets ramassés par collecte (en kg)</th>
+					<th class="py-3 px-4 text-center">Type de déchets</th>
+					<th class="py-3 px-4 text-center">Quantité déchets </br>(en kg)</th>
+					<th class="py-3 px-4 text-center">Poids Total des déchets </br>ramassés par collecte (en kg)</th>
                     <th class="py-3 px-4 text-center">Actions</th>
                 </tr>
                 </thead>
@@ -250,8 +256,8 @@ error_reporting(E_ALL);
 
 						<td class="py-3 px-4"><?= array_sum($quantites) ?></td>
 
-						<td class="py-3 px-4 flex space-x-2">
-							<a href="collection_edit.php?id=<?= $collecte['id'] ?>" class="bg-emerald-600 hover:bg-emerald-900 text-white px-4 py-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+						<td class="py-3 px-4 flex space-x-2 item-center">
+							<a href="collection_edit.php?id=<?= $collecte['id'] ?>" class="bg-green-600 opacity-90 hover:bg-green-900 text-white px-4 py-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ">
 								✏️ Modifier
 							</a>
 							<a href="collection_delete.php?id=<?= $collecte['id'] ?>" class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette collecte ?');">
