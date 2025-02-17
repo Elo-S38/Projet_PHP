@@ -1,5 +1,6 @@
 <?php
 require 'config.php';
+require 'verify_login.php';
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -49,11 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </li>
             <li><a href="my_account.php" class="flex items-center py-2 px-3 hover:bg-blue-800 rounded-lg"><i class="fas fa-cogs mr-3"></i> Mon compte</a></li>
 
-        <div class="mt-6">
-            <button onclick="logout()" class="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg shadow-md">
-                Déconnexion
-            </button>
-        </div>
+			<li><a href="logout.php" class="flex items-center py-2 px-3 bg-red-600 hover:bg-red-700 rounded-lg" onclick="return confirm('Voulez vous vraiment vous déconnecter ?')">
+				Déconnexion
+			</a></li>
     </div>
 
     <!-- Contenu principal -->
