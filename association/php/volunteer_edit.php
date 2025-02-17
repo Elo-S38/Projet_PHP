@@ -1,5 +1,6 @@
 <?php
 require 'config.php';
+require 'verify_login.php';
 
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     header("Location: volunteer_list.php");
@@ -59,11 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </li>
             <li><a href="my_account.php" class="flex items-center py-2 px-3 hover:bg-blue-800 rounded-lg"><i
                             class="fas fa-cogs mr-3"></i> Mon compte</a></li>
-        <div class="mt-6">
-            <button onclick="logout()" class="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg shadow-md">
-                Déconnexion
-            </button>
-        </div>
+			<li><a href="logout.php" class="flex items-center py-2 px-3 bg-red-600 hover:bg-red-700 rounded-lg" onclick="return confirm('Voulez vous vraiment vous déconnecter ?')">
+				Déconnexion
+			</a></li>
     </div>
 	<div class="flex-1 p-8 overflow-y-auto">
         <h1 class="text-4xl font-bold text-blue-900 mb-6">Modifier un bénévole</h1>
@@ -85,8 +84,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <label class="block text-sm font-medium text-gray-700">Role :</label>
                     <select name="role"
                             class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="participant">Participant</option>
-                        <option value="admin">Admin</option>
+                        <option value="participant" <?= $benevole["role"] === "participant" ? "selected" : NULL; ?> >Participant</option>
+                        <option value="admin" <?= $benevole["role"] === "admin" ? "selected" : NULL; ?> >Admin</option>
                     </select>
                 </div>
                 <div class="flex justify-end space-x-4">
