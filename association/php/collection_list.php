@@ -200,13 +200,13 @@ error_reporting(E_ALL);
             <table class="w-full table-auto border-collapse">
                 <thead class="bg-cyan-700 text-white">
                 <tr>
-                    <th class="py-3 px-4 text-center">Date</th>
-                    <th class="py-3 px-4 text-center">Lieu</th>
-                    <th class="py-3 px-4 text-center">Bénévole Responsable</th>
-					<th class="py-3 px-4 text-center">Type de déchets</th>
-					<th class="py-3 px-4 text-center">Quantité déchets </br>(en kg)</th>
-					<th class="py-3 px-4 text-center">Poids Total des déchets </br>ramassés par collecte (en kg)</th>
-                    <th class="py-3 px-4 text-center">Actions</th>
+                    <th class="py-3 px-4 text-lg text-center">Date</th>
+                    <th class="py-3 px-4 text-lg text-center">Lieu</th>
+                    <th class="py-3 px-4 text-lg text-center">Bénévole Responsable</th>
+					<th class="py-3 px-4 text-lg text-center">Type de déchets</th>
+					<th class="py-3 px-4 text-lg text-center">Quantité déchets </br>(en kg)</th>
+					<th class="py-3 px-4 text-lg text-center">Poids Total des déchets </br>ramassés par collecte (en kg)</th>
+                    <th class="py-3 px-4 text-lg text-center">Actions</th>
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-300 text-center">
@@ -256,7 +256,7 @@ error_reporting(E_ALL);
 
 						<td class="py-3 px-4"><?= array_sum($quantites) ?></td>
 
-						<td class="py-3 px-4 flex space-x-2 item-center">
+						<td class="py-3 px-4 flex space-x-2 ">
 							<a href="collection_edit.php?id=<?= $collecte['id'] ?>" class="bg-green-600 opacity-90 hover:bg-green-900 text-white px-4 py-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ">
 								✏️ Modifier
 							</a>
