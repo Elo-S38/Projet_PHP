@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body class="bg-gray-100 text-gray-900">
 
 <div class="flex justify-center items-center min-h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full sm:w-96">
+    <div class="bg-white p-8 rounded-lg shadow-2xl w-full sm:w-[750px]">
         <h1 class="text-3xl font-bold text-blue-900 mb-6 text-center">Connexion</h1>
 
         <?php if (!empty($error)) : ?>
@@ -48,18 +48,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         <form method="POST" class="space-y-6">
             <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <label for="email" class="block text-sm font-bold text-gray-700 mb-4">Email</label>
                 <input type="email" name="email" id="email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
             </div>
 
             <div>
-                <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+                <label for="password" class="block text-sm font-bold text-gray-700 mb-4">Mot de passe</label>
                 <input type="password" name="password" id="password" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
             </div>
 
             <div class="flex justify-between items-center">
-                <a href="#" class="text-sm text-blue-600 hover:underline">Mot de passe oublié ?</a>
-                <button type="submit" class="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2 rounded-lg shadow-md">
+                <a href="#" class="text-sm text-blue-600 hover:underline hover:font-bold">Mot de passe oublié ?</a>
+                <button type="submit" class="bg-cyan-700 font-bold hover:bg-[#005a8d] text-white px-6 py-2 rounded-lg shadow-md">
                     Se connecter
                 </button>
             </div>
