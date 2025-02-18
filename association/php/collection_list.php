@@ -1,5 +1,6 @@
 <?php
 require 'config.php';
+require 'verify_login.php';
 
 try {
     $stmt = $pdo->query("
@@ -72,6 +73,7 @@ error_reporting(E_ALL);
 
 <div class="flex h-screen">
     <!-- Barre de navigation -->
+
     <div class="bg-stone-300 text-black w-64 p-6">
     <img src="Logo.png" alt="logoLC">
         <h2 class="text-2xl font-bold mb-6"></h2>
@@ -88,6 +90,7 @@ error_reporting(E_ALL);
                 Déconnexion
             </button>
         </div>
+
     </div>
 
     <!-- Contenu principal -->
@@ -146,7 +149,7 @@ error_reporting(E_ALL);
     
     <div class="flex-1 pb-0">
         <div class="w-full h-full  flex justify-center items-center">
-            <canvas id="monDonut" width="350" height="250" > </canvas>
+            <canvas id="monDonut" width="350" height="250" > </canvas> 
         </div>
     </div>
 </div>

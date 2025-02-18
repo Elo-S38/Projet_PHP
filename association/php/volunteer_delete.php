@@ -4,6 +4,11 @@ require 'config.php';
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $id = (int) $_GET['id'];
 
+	if ($_SESSION["user_id"] == $id)
+	{
+		header("Location: volunteer_list.php?delete=1");
+		exit;
+	}
     try {
         $pdo->beginTransaction();
 
