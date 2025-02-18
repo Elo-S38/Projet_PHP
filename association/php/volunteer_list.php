@@ -68,13 +68,8 @@ error_reporting(E_ALL);
             <li><a href="volunteer_list.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fa-solid fa-list mr-3"></i> Liste des bénévoles</a></li>
             <li><a href="user_add.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-user-plus mr-3"></i> Ajouter un bénévole</a></li>
             <li><a href="my_account.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-cogs mr-3"></i> Mon compte</a></li>
-</ul>
-
-<div class="mt-6">
-            <button onclick="logout()" class="w-full bg-red-700 font-bold hover:bg-red-900 text-white py-2 rounded-lg shadow-md">
-                Déconnexion
-            </button>
-        </div>
+			<li><a href="logout.php" class="flex items-center py-2 px-3 bg-red-600 hover:bg-red-700 rounded-lg" onclick="return confirm('Voulez vous vraiment vous déconnecter ?')">Déconnexion</a></li>
+		</ul>
         <!-- <ul class="list-none p-2.5">
             <li><a href="collection_list.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg"><i
                             class="fas fa-tachometer-alt mr-3"></i> Tableau de bord</a></li>
