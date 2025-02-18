@@ -74,30 +74,21 @@ error_reporting(E_ALL);
 <div class="flex h-screen">
     <!-- Barre de navigation -->
     <div class="bg-gray-300 text-white w-70 p-6">
-       <img src="Logo.png" alt="logoLC" class="w-64 mb-14">
+		<img src="Logo.png" alt="logoLC" class="w-64 mb-14">
 
-       <ul class="list-none space-y-5">
+    	<ul class="list-none space-y-5">
         
             <li><a href="collection_list.php" class="list-none flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-tachometer-alt mr-3"></i> Tableau de bord</a></li>
-            <li><a href="collection_add.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-plus-circle mr-3"></i> Ajouter une collecte</a></li>
-            <li><a href="volunteer_list.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fa-solid fa-list mr-3"></i> Liste des bénévoles</a></li>
-            <li><a href="user_add.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-user-plus mr-3"></i> Ajouter un bénévole</a></li>
-            <li><a href="my_account.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-cogs mr-3"></i> Mon compte</a></li>
+            <?php if ($_SESSION["role"] === "admin"):?>
+				<li><a href="collection_add.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-plus-circle mr-3"></i> Ajouter une collecte</a></li>
+            <?php endif; ?>
+			<li><a href="<?= ($_SESSION["role"] === "admin") ? 'admin_list.php' : 'volunteer_list.php' ?>" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fa-solid fa-list mr-3"></i> Liste des bénévoles</a></li>
+			<?php if ($_SESSION["role"] === "admin"):?>
+				<li><a href="user_add.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-user-plus mr-3"></i> Ajouter un bénévole</a></li>
+            <?php endif; ?>
+			<li><a href="my_account.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-cogs mr-3"></i> Mon compte</a></li>
 			<li><a href="logout.php" class="flex items-center py-2 px-3 bg-red-600 hover:bg-red-700 rounded-lg" onclick="return confirm('Voulez vous vraiment vous déconnecter ?')">Déconnexion</a></li>
-</ul>
-
-        <!-- <ul class="list-none p-2.5">
-            <li><a href="collection_list.php" class="flex items-center py-2 px-3 hover:bg-[#007acc] rounded-lg font-bold"><i class="fas fa-tachometer-alt mr-3"></i> Tableau de bord</a></li>
-            <li><a href="collection_add.php" class="flex items-center py-2 px-3 hover:bg-[#007acc] rounded-lg font-bold"><i class="fas fa-plus-circle mr-3"></i> Ajouter une collecte</a></li>
-            <li><a href="volunteer_list.php" class="flex items-center py-2 px-3 hover:bg-[#007acc] rounded-lg font-bold"><i class="fa-solid fa-list mr-3"></i> Liste des bénévoles</a></li>
-            <li><a href="user_add.php" class="flex items-center py-2 px-3 hover:bg-[#007acc] rounded-lg font-bold"><i class="fas fa-user-plus mr-3"></i> Ajouter un bénévole</a></li>
-            <li><a href="my_account.php" class="flex items-center py-2 px-3 hover:bg-[#007acc] rounded-lg font-bold"><i class="fas fa-cogs mr-3"></i> Mon compte</a></li>
-            <li><a href="logout.php" class="flex items-center py-2 px-3 bg-red-600 hover:bg-red-700 rounded-lg" onclick="return confirm('Voulez vous vraiment vous déconnecter ?')">
-                    Déconnexion
-                </a></li>
-            </ul> -->
-            
-
+		</ul>
     </div>
 
     <!-- Contenu principal -->
@@ -159,7 +150,6 @@ error_reporting(E_ALL);
     <div class="flex-1 pb-0">
         <div class="w-full h-full  flex justify-center items-center">
             <canvas id="monDonut" width="350" height="250" > </canvas> 
-
         </div>
     </div>
 </div>
@@ -168,41 +158,42 @@ error_reporting(E_ALL);
     const ctx = document.getElementById('monDonut').getContext('2d');
 
     // Données PHP converties en format JavaScript
-    const labels = <?php echo json_encode(array_keys($sumByTypeDechet)); ?>;
-    const dataValues = <?php echo json_encode(array_values($sumByTypeDechet)); ?>;
+		const labels = <?php echo json_encode(array_keys($sumByTypeDechet)); ?>;
+		const dataValues = <?php echo json_encode(array_values($sumByTypeDechet)); ?>;
 
-    new Chart(ctx, {
-        type: 'doughnut', // Le type 'doughnut' pour un donut
-        data: {
-            labels: labels, // Utilisation des labels (types de déchets)
-            datasets: [{
-                data: dataValues, // Utilisation des valeurs des quantités
-                backgroundColor: ['#ce6a6b', '#36A2EB', '#ffbd59', '#399140', '#513653'], // Couleurs personnalisées
-                borderColor: '#000000', // Bordure noire sur chaque part
-                borderWidth: 1, // Épaisseur de la bordure
-                hoverOffset: 4 // Effet de survol qui agrandit légèrement le secteur
-            }]
-        },
-        options: {
-        responsive: false,
-        plugins: {
-            legend: {
-                position: 'left',
-                labels: {
-                    color: 'black',
-                    font: {
-                        size: 20 // Taille de police des légendes
-                    }
-                }
-                
-            },
-            title: {
-                display: false,
-                text: 'Répartition des types de déchets collectés'
-            }
-        }
-    }
-});
+		new Chart(ctx, {
+			type: 'doughnut', // Le type 'doughnut' pour un donut
+			data: {
+				labels: labels, // Utilisation des labels (types de déchets)
+				datasets: [{
+					data: dataValues, // Utilisation des valeurs des quantités
+					backgroundColor: ['#ce6a6b', '#36A2EB', '#ffbd59', '#399140', '#513653'], // Couleurs personnalisées
+					borderColor: '#000000', // Bordure noire sur chaque part
+					borderWidth: 1, // Épaisseur de la bordure
+					hoverOffset: 4 // Effet de survol qui agrandit légèrement le secteur
+				}]
+			},
+			options: {
+			responsive: false,
+			plugins: {
+				legend: {
+					position: 'left',
+					labels: {
+						color: 'black',
+						font: {
+							size: 20 // Taille de police des légendes
+						}
+					}
+					
+				},
+				title: {
+					display: false,
+					text: 'Répartition des types de déchets collectés'
+					}
+				}
+			}
+		});
+    
 </script>
 
     </div>
@@ -220,7 +211,9 @@ error_reporting(E_ALL);
 					<th class="py-3 px-4 text-lg text-center">Type de déchets</th>
 					<th class="py-3 px-4 text-lg text-center">Quantité déchets </br>(en kg)</th>
 					<th class="py-3 px-4 text-lg text-center">Poids Total des déchets </br>ramassés par collecte (en kg)</th>
-                    <th class="py-3 px-4 text-lg text-center">Actions</th>
+					<?php if ($_SESSION["role"] === "admin"):?>
+                    	<th class="py-3 px-4 text-lg text-center">Actions</th>
+					<?php endif; ?>
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-300 text-center">
@@ -270,15 +263,17 @@ error_reporting(E_ALL);
 
 						<td class="py-3 px-4"><?= array_sum($quantites) ?></td>
 
-						<td class="py-3 px-4 flex space-x-2">
-							<a href="collection_edit.php?id=<?= $collecte['id'] ?>" class="bg-cyan-700 font-bold hover:bg-[#005a8d] text-white px-4 py-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-								✏️ Modifier
-							</a>
-							<a href="collection_delete.php?id=<?= $collecte['id'] ?>" class="bg-red-700 font-bold hover:bg-red-900 text-white px-4 py-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette collecte ?');">
+						<?php if ($_SESSION["role"] === "admin"):?>
+							<td class="py-3 px-4 flex space-x-2">
+								<a href="collection_edit.php?id=<?= $collecte['id'] ?>" class="bg-cyan-700 font-bold hover:bg-[#005a8d] text-white px-4 py-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+									✏️ Modifier
+								</a>
+								<a href="collection_delete.php?id=<?= $collecte['id'] ?>" class="bg-red-700 font-bold hover:bg-red-900 text-white px-4 py-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette collecte ?');">
 
-								🗑️ Supprimer
-							</a>
-						</td>
+									🗑️ Supprimer
+								</a>
+							</td>
+						<?php endif; ?>
 					</tr>
 				<?php endforeach; ?>
                 </tbody>

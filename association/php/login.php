@@ -18,8 +18,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION["nom"] = $user["nom"];
         $_SESSION["role"] = $user["role"];
 
-        header("Location: collection_list.php");
-        exit;
+		if ($_SESSION["role"] === "participant")
+		{
+			header("Location: volunteer_list.php");
+			exit;
+		}
+        elseif ($_SESSION["role"] === "admin")
+		{
+			header("Location: admin_list.php");
+        	exit;
+		}
     } else {
         $error = "Identifiants incorrects";
     }

@@ -103,31 +103,13 @@ foreach ($dechets as $dechet) {
     <!-- <h2 class="text-2xl font-bold mb-6">Dashboard</h2> -->
     <img src="Logo.png" alt="logoLC" class="w-64 mb-14">
     <ul class="list-none space-y-5">
-        
         <li><a href="collection_list.php" class="list-none flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-tachometer-alt mr-3"></i> Tableau de bord</a></li>
         <li><a href="collection_add.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-plus-circle mr-3"></i> Ajouter une collecte</a></li>
-        <li><a href="volunteer_list.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fa-solid fa-list mr-3"></i> Liste des bénévoles</a></li>
+        <li><a href="<?= ($_SESSION["role"] === "admin") ? 'admin_list.php' : 'volunteer_list.php' ?>" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fa-solid fa-list mr-3"></i> Liste des bénévoles</a></li>
         <li><a href="user_add.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-user-plus mr-3"></i> Ajouter un bénévole</a></li>
         <li><a href="my_account.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-cogs mr-3"></i> Mon compte</a></li>
 		<li><a href="logout.php" class="flex items-center py-2 px-3 bg-red-600 hover:bg-red-700 rounded-lg" onclick="return confirm('Voulez vous vraiment vous déconnecter ?')">Déconnexion</a></li>
 	</ul>
-    <!-- <ul class="list-none p-2.5">
-    <li><a href="collection_list.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg">
-        <i class="fas fa-tachometer-alt mr-3"></i> Tableau de bord
-    </a></li>
-    <li><a href="volunteer_list.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg">
-        <i class="fa-solid fa-list mr-3"></i> Liste des bénévoles
-    </a></li>
-    <li><a href="user_add.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg">
-        <i class="fas fa-user-plus mr-3"></i> Ajouter un bénévole
-    </a></li>
-    <li><a href="my_account.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg">
-        <i class="fas fa-cogs mr-3"></i> Mon compte
-    </a></li>
-      <li><a href="logout.php" class="flex items-center py-2 px-3 bg-red-600 hover:bg-red-700 rounded-lg" onclick="return confirm('Voulez vous vraiment vous déconnecter ?')">
-				Déconnexion
-			</a></li>
-		</ul> -->
 
     </div>
 
