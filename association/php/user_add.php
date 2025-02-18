@@ -38,20 +38,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <div class="flex h-screen">
     <!-- Barre de navigation -->
-    <div class="bg-cyan-200 text-white w-64 p-6">
+    <div class="bg-[#005a8d] text-white w-70 p-6">
         <h2 class="text-2xl font-bold mb-6">Dashboard</h2>
 
-            <li><a href="collection_list.php" class="flex items-center py-2 px-3 hover:bg-blue-800 rounded-lg"><i
+        <ul class="list-none p-2.5">
+            <li><a href="collection_list.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg"><i
                             class="fas fa-tachometer-alt mr-3"></i> Tableau de bord</a></li>
-            <li><a href="collection_add.php" class="flex items-center py-2 px-3 hover:bg-blue-800 rounded-lg"><i
+            <li><a href="collection_add.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg"><i
                             class="fas fa-plus-circle mr-3"></i> Ajouter une collecte</a></li>
-            <li><a href="volunteer_list.php" class="flex items-center py-2 px-3 hover:bg-blue-800 rounded-lg"><i
+            <li><a href="volunteer_list.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg"><i
                             class="fa-solid fa-list mr-3"></i> Liste des bénévoles</a></li>
-            <li><a href="my_account.php" class="flex items-center py-2 px-3 hover:bg-blue-800 rounded-lg"><i
+            <li><a href="my_account.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg"><i
                             class="fas fa-cogs mr-3"></i> Mon compte</a></li>
 
+                            </ul>
+
         <div class="mt-6">
-            <button onclick="logout()" class="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg shadow-md">
+            <button onclick="logout()" class="w-full bg-red-700 font-bold hover:bg-red-900 text-white py-2 rounded-lg shadow-md">
                 Déconnexion
             </button>
         </div>
@@ -59,34 +62,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <!-- Contenu principal -->
     <div class="flex-1 p-8 overflow-y-auto">
-        <h1 class="text-4xl font-bold text-blue-800 mb-6">Ajouter un Bénévole</h1>
+        <h1 class="text-4xl font-bold text-black mb-16">Ajouter un Bénévole</h1>
 
         <!-- Formulaire d'ajout -->
-        <div class="bg-white p-6 rounded-lg shadow-lg max-w-lg mx-auto">
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-2xl mx-auto">
             <form action="user_add.php" method="POST">
                 <div class="mb-4">
-                    <label class="block text-gray-700 font-medium">Nom</label>
+                    <label class="block text-gray-700 font-bold mb-4">Nom</label>
                     <input type="text" name="nom"
                            class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                            placeholder="Nom du bénévole" required>
                 </div>
 
                 <div class="mb-4">
-                    <label class="block text-gray-700 font-medium">Email</label>
+                    <label class="block text-gray-700 font-bold mb-4">Email</label>
                     <input type="email" name="email"
                            class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                            placeholder="Email du bénévole" required>
                 </div>
 
                 <div class="mb-4">
-                    <label class="block text-gray-700 font-medium">Mot de passe</label>
+                    <label class="block text-gray-700 font-bold mb-4">Mot de passe</label>
                     <input type="password" name="mot_de_passe"
                            class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                            placeholder="Mot de passe" required>
                 </div>
 
                 <div class="mb-4">
-                    <label class="block text-gray-700 font-medium">Rôle</label>
+                    <label class="block text-gray-700 font-bold mb-4">Rôle</label>
                     <select name="role"
                             class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <option value="participant">Participant</option>
@@ -96,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 <div class="mt-6">
                     <button type="submit"
-                            class="w-full bg-cyan-200 hover:bg-cyan-600 text-white py-3 rounded-lg shadow-md font-semibold">
+                            class="w-full bg-cyan-700 font-bold hover:bg-[#005a8d] text-white py-3 rounded-lg shadow-md font-semibold">
                         Ajouter le bénévole
                     </button>
                 </div>

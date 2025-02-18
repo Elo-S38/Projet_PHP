@@ -44,29 +44,32 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body class="bg-gray-100 text-gray-900">
 <div class="flex h-screen">
     <!-- Barre de navigation -->
-    <div class="bg-cyan-200 text-white w-64 p-6">
+    <div class="bg-[#005a8d] text-white w-70 p-6">
         <h2 class="text-2xl font-bold mb-6">Dashboard</h2>
-            <li><a href="collection_list.php" class="flex items-center py-2 px-3 hover:bg-blue-800 rounded-lg"><i
+        <ul class="list-none p-2.5">
+            <li><a href="collection_list.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg"><i
                             class="fas fa-tachometer-alt mr-3"></i> Tableau de bord</a></li>
-            <li><a href="collection_add.php" class="flex items-center py-2 px-3 hover:bg-blue-800 rounded-lg"><i
+            <li><a href="collection_add.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg"><i
                             class="fas fa-plus-circle mr-3"></i> Ajouter une collecte</a></li>
-            <li><a href="volunteer_list.php" class="flex items-center py-2 px-3 hover:bg-blue-800 rounded-lg"><i
+            <li><a href="volunteer_list.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg"><i
                             class="fa-solid fa-list mr-3"></i> Liste des bénévoles</a></li>
             <li>
-                <a href="user_add.php" class="flex items-center py-2 px-3 hover:bg-blue-800 rounded-lg">
+                <a href="user_add.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg">
                     <i class="fas fa-user-plus mr-3"></i> Ajouter un bénévole
                 </a>
             </li>
-            <li><a href="my_account.php" class="flex items-center py-2 px-3 hover:bg-blue-800 rounded-lg"><i
+            <li><a href="my_account.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg"><i
                             class="fas fa-cogs mr-3"></i> Mon compte</a></li>
+
+        </ul>
         <div class="mt-6">
-            <button onclick="logout()" class="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg shadow-md">
+            <button onclick="logout()" class="w-full bg-red-700 font-bold hover:bg-red-900 text-white py-2 rounded-lg shadow-md">
                 Déconnexion
             </button>
         </div>
     </div>
 	<div class="flex-1 p-8 overflow-y-auto">
-        <h1 class="text-4xl font-bold text-blue-900 mb-6">Modifier un bénévole</h1>
+        <h1 class="text-4xl font-bold text-black mb-6">Modifier un bénévole</h1>
 
         <!-- Formulaire -->
         <div class="bg-white p-6 rounded-lg shadow-lg">
@@ -90,8 +93,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </select>
                 </div>
                 <div class="flex justify-end space-x-4">
-                    <a href="volunteer_list.php" class="bg-gray-500 text-white px-4 py-2 rounded-lg">Annuler</a>
-                    <button type="submit" class="bg-cyan-200 text-white px-4 py-2 rounded-lg">Modifier</button>
+                    <a href="volunteer_list.php" class="bg-gray-500 text-white px-4 py-2 font-bold rounded-lg">Annuler</a>
+                    <button type="submit" class="bg-cyan-700 font-bold hover:bg-[#005a8d] text-white px-4 py-2 rounded-lg">Modifier</button>
                 </div>
             </form>
         </div>
