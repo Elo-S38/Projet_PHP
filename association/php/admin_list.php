@@ -13,11 +13,26 @@
     <!-- Barre de navigation -->
     <!-- <div class="bg-cyan-200 text-white w-64 p-6">
         <h2 class="text-2xl font-bold mb-6">Dashboard</h2> -->
-        <div class="bg-[#005a8d] text-white w-70 p-6">
-    <h2 class="text-2xl font-bold mb-6">Dashboard</h2>
+        <div class="bg-gray-300 text-white w-70 p-6">
+    <!-- <h2 class="text-2xl font-bold mb-6">Dashboard</h2> -->
+    <img src="Logo.png" alt="logoLC" class="w-64 mb-14">
 
-<!-- Hello -->
- <ul class="list-none p-2.5">
+    <ul class="list-none space-y-5">
+        
+        <li><a href="collection_list.php" class="list-none flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-tachometer-alt mr-3"></i> Tableau de bord</a></li>
+        <li><a href="collection_add.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-plus-circle mr-3"></i> Ajouter une collecte</a></li>
+        <li><a href="volunteer_list.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fa-solid fa-list mr-3"></i> Liste des bénévoles</a></li>
+        <li><a href="user_add.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-user-plus mr-3"></i> Ajouter un bénévole</a></li>
+        <li><a href="my_account.php" class="flex items-center py-2 px-3 bg-cyan-700 hover:bg-cyan-900 text-white rounded-lg"><i class="fas fa-cogs mr-3"></i> Mon compte</a></li>
+</ul>
+
+<div class="mt-6">
+        <button onclick="logout()" class="w-full bg-red-700 font-bold hover:bg-red-900 text-white py-2 rounded-lg shadow-md">
+            Déconnexion
+        </button>
+    </div>
+
+ <!-- <ul class="list-none p-2.5">
     <li><a href="collection_list.php" class="menu-item flex items-center py-2 px-3 text-white font-bold hover:bg-black hover:text-white transition-colors duration-300"><i class="fas fa-tachometer-alt mr-3"></i> Tableau de bord</a></li>
 <li><a href="collection_add.php" class="menu-item flex items-center py-2 px-3 rounded-lg text-white font-bold hover:bg-black
  hover:text-white transition-colors duration-300"><i class="fas fa-plus-circle mr-3"></i> Ajouter une collecte</a></li>
@@ -30,7 +45,7 @@
     <button onclick="logout()" class="w-full bg-red-700 font-bold hover:bg-red-900 text-white py-2 rounded-lg shadow-md transition-colors duration-300">
         Déconnexion
     </button>
-</div>
+</div> -->
 </div>
 
 <!-- Contenu principal -->
