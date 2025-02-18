@@ -1,5 +1,6 @@
 <?php
 require 'config.php';
+require 'verify_login.php';
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -12,7 +13,7 @@ $benevoles = $stmt_benevoles->fetchAll();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nom = $_POST["nom"];
     $email = $_POST["email"];
-    $mot_de_passe = $_POST["mot_de_passe"]; 
+    $mot_de_passe = password_hash($_POST["mot_de_passe"], PASSWORD_DEFAULT);
     $role = $_POST["role"];  
 
     // Insérer la collecte avec le bénévole sélectionné
@@ -50,14 +51,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             class="fa-solid fa-list mr-3"></i> Liste des bénévoles</a></li>
             <li><a href="my_account.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg"><i
                             class="fas fa-cogs mr-3"></i> Mon compte</a></li>
+            <li><a href="logout.php" class="flex items-center py-2 px-3 bg-red-600 hover:bg-red-700 rounded-lg" onclick="return confirm('Voulez vous vraiment vous déconnecter ?')">
+                    Déconnexion
+                  </a></li>
+          </ul>
 
-                            </ul>
-
-        <div class="mt-6">
-            <button onclick="logout()" class="w-full bg-red-700 font-bold hover:bg-red-900 text-white py-2 rounded-lg shadow-md">
-                Déconnexion
-            </button>
-        </div>
     </div>
 
     <!-- Contenu principal -->

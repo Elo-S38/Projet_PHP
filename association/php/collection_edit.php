@@ -1,5 +1,6 @@
 <?php
 require 'config.php'; // Inclusion du fichier de configuration contenant la connexion à la base de données
+require 'verify_login.php';
 
 // Vérifier si un ID de collecte est fourni via l'URL
 if (!isset($_GET['id']) || empty($_GET['id'])) { 
@@ -95,6 +96,7 @@ foreach ($dechets as $dechet) {
 
 <div class="flex h-screen">
     <!-- Menu latéral (Dashboard) -->
+
     <div class="bg-[#005a8d] text-white w-70 p-6">
        
     
@@ -113,13 +115,11 @@ foreach ($dechets as $dechet) {
     <li><a href="my_account.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg">
         <i class="fas fa-cogs mr-3"></i> Mon compte
     </a></li>
-</ul>
+      <li><a href="logout.php" class="flex items-center py-2 px-3 bg-red-600 hover:bg-red-700 rounded-lg" onclick="return confirm('Voulez vous vraiment vous déconnecter ?')">
+				Déconnexion
+			</a></li>
+		</ul>
 
-<div class="mt-6">
-            <button onclick="logout()" class="w-full bg-red-700 font-bold hover:bg-red-900 text-white py-2 rounded-lg shadow-md">
-                Déconnexion
-            </button>
-        </div>
     </div>
 
     <!-- Contenu principal -->
