@@ -91,27 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
                     <i class="fas fa-user-plus mr-3"></i> Ajouter un bénévole
                 </a>
             </li>
-            <li><a href="my_account.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg"><i
-                            class="fas fa-cogs mr-3"></i> Mon compte</a></li>
-
-        </ul>
-
-        <ul class="list-none p-2.5">
-        <li><a href="collection_list.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg"><i
-                        class="fas fa-tachometer-alt mr-3"></i> Tableau</a></li>
-
-        <li><a href="collection_add.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg"><i
-                        class="fas fa-plus-circle mr-3"></i> Ajouter une collecte</a></li>
-        <li><a href="volunteer_list.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg"><i
-
-                        class="fa-solid fa-list mr-3"></i> Liste</a></li>
-        <li>
-            <a href="user_add.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg">
-                <i class="fas fa-user-plus mr-3"></i> Ajouter un bénévole
-            </a>
-        </li>
-        <li><a href="my_account.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg"><i
-                        class="fas fa-cogs mr-3"></i>Perso</a></li>
+            <li><a href="my_account.php" class="flex items-center py-2 px-3 font-bold hover:bg-[#007acc] rounded-lg"><i class="fas fa-cogs mr-3"></i> Mon compte</a></li>
          <li><a href="logout.php" class="flex items-center py-2 px-3 bg-red-600 hover:bg-red-700 rounded-lg" onclick="return confirm('Voulez vous vraiment vous déconnecter ?')">
                Déconnexion
          </a></li>

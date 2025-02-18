@@ -74,20 +74,17 @@ error_reporting(E_ALL);
 <div class="flex h-screen">
     <!-- Barre de navigation -->
     <div class="bg-[#005a8d] text-white w-70 p-6">
-       <img src="Logo.png" alt="logoLC">
-        <h2 class="text-2xl font-bold mb-6">Dashboard</h2>
+       <img src="Logo.png" alt="logoLC" class="w-64">
         <ul class="list-none p-2.5">
             <li><a href="collection_list.php" class="flex items-center py-2 px-3 hover:bg-[#007acc] rounded-lg font-bold"><i class="fas fa-tachometer-alt mr-3"></i> Tableau de bord</a></li>
             <li><a href="collection_add.php" class="flex items-center py-2 px-3 hover:bg-[#007acc] rounded-lg font-bold"><i class="fas fa-plus-circle mr-3"></i> Ajouter une collecte</a></li>
             <li><a href="volunteer_list.php" class="flex items-center py-2 px-3 hover:bg-[#007acc] rounded-lg font-bold"><i class="fa-solid fa-list mr-3"></i> Liste des bénévoles</a></li>
             <li><a href="user_add.php" class="flex items-center py-2 px-3 hover:bg-[#007acc] rounded-lg font-bold"><i class="fas fa-user-plus mr-3"></i> Ajouter un bénévole</a></li>
             <li><a href="my_account.php" class="flex items-center py-2 px-3 hover:bg-[#007acc] rounded-lg font-bold"><i class="fas fa-cogs mr-3"></i> Mon compte</a></li>
-        </ul>
-        <div class="mt-6">
-            <button onclick="logout()" class="w-full bg-red-700 hover:bg-red-900 text-white py-2 rounded-lg shadow-md font-bold">
-                Déconnexion
-            </button>
-        </div>
+            <li><a href="logout.php" class="flex items-center py-2 px-3 bg-red-600 hover:bg-red-700 rounded-lg" onclick="return confirm('Voulez vous vraiment vous déconnecter ?')">
+                    Déconnexion
+                </a></li>
+            </ul>
 
     </div>
 
@@ -106,35 +103,35 @@ error_reporting(E_ALL);
         <?php endif; ?>
 
         <!-- Cartes d'informations -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <!-- Nombre total de collectes -->
-            <div class="bg-white p-6 rounded-lg shadow-lg w-48 hover:border-2 border-blue-400 p-4">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full hover:border-2 border-blue-400 p-4">
 
                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Total des Collectes</h3>
                 <p class="text-3xl font-bold text-blue-600"><?= count($collectes) ?></p>
             </div>
             <!-- Dernière collecte -->
-            <div class="bg-white p-6 rounded-lg shadow-lg w-48 hover:border-2 border-blue-400 p-4">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full hover:border-2 border-blue-400 p-4">
 
                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Dernière Collecte</h3>
                 <p class="text-lg text-gray-600"><?= htmlspecialchars($collectes[0]['lieu']) ?></p>
                 <p class="text-lg text-gray-600"><?= date('d/m/Y', strtotime($collectes[0]['date_collecte'])) ?></p>
             </div>
             <!-- Bénévole Responsable -->
-            <div class="bg-white p-6 rounded-lg shadow-lg w-48 hover:border-2 border-blue-400 p-4">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full hover:border-2 border-blue-400 p-4">
 
                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Bénévole Admin</h3>
                 <p class="text-lg text-gray-600"><?= $adminNom ?></p>
             </div>
             <!-- Total des dechets collectés -->
-            <div class="bg-white p-6 rounded-lg shadow-lg w-48 hover:border-2 border-blue-400 p-4">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full hover:border-2 border-blue-400 p-4">
 
                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Total des déchets collectés</h3>
                 <p class="text-lg text-gray-600"><?= round($poids_total[0]["SUM(quantite_kg)"], 2) . " kg"?></p>
             </div>
 
 <!-- Totaux des déchets collectés par type de déchets et Donut (en utilisant Flexbox) -->
-<div class="bg-cyan-600 opacity-85 p-6 rounded-lg shadow-lg flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6 col-span-4 w-full">
+<div class="bg-cyan-600 opacity-85 p-6 rounded-lg shadow-lg flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6 col-span-5 w-full">
     <div class="flex-1">
         <h3 class="text-3xl font-semibold text-cyan-1000 mb-3 text-center">Totaux des déchets collectés par type</h3>
         <div class="flex flex-col items-center space-y-3">
