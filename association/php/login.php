@@ -1,5 +1,5 @@
 <?php
-session_start(); // Démarrer la session
+
 require 'config.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -36,9 +36,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 <body class="bg-gray-100 text-gray-900">
 
-<div class="flex justify-center items-center min-h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-2xl w-full sm:w-[750px]">
-        <h1 class="text-3xl font-bold text-blue-900 mb-6 text-center">Connexion</h1>
+<div class="flex min-h-screen bg-gray-100">
+    <!-- Partie gauche : Logo + Slogan -->
+    <div class="flex-1 flex flex-col justify-start pt-20 items-center  bg-gray space-y-10">
+        <!-- Agrandir le logo -->
+        <img src="Logo.png" alt="Logo" class="w-120 h-120 object-contain">
+
+        <!-- Texte slogan -->
+        <h1 class="text-center text-4xl font-bold text-gray-800 font-[Pacifico]">
+            Chaque geste compte, chaque main aide! <br> Merci à vous!
+        </h1>
+    </div>
+
+    <!-- Partie droite : Formulaire (à compléter si besoin) -->
+    <div class="flex-1 flex justify-center items-center bg-gray">
+        <div class="bg-white p-12 rounded-lg shadow-2xl w-full sm:w-[600px] h-[400px]">        
+        
+     
 
         <?php if (!empty($error)) : ?>
             <div class="text-red-600 text-center mb-4">
@@ -46,14 +60,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
         <?php endif; ?>
 
-        <form method="POST" class="space-y-6">
+        <form method="POST" class="space-y-10">
             <div>
-                <label for="email" class="block text-sm font-bold text-gray-700 mb-4">Email</label>
+                <label for="email" class="block text-lg font-bold text-gray-700 mb-4">Email</label>
                 <input type="email" name="email" id="email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
             </div>
 
             <div>
-                <label for="password" class="block text-sm font-bold text-gray-700 mb-4">Mot de passe</label>
+                <label for="password" class="block text-lg font-bold text-gray-700 mb-4">Mot de passe</label>
                 <input type="password" name="password" id="password" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
             </div>
 
