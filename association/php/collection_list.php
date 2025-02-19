@@ -38,8 +38,6 @@ try {
 		$sumByTypeDechet[$type_dechet] += $quantiteKg;
 	}
 
-	var_dump(isset($sumByTypeDechet));
-
     $admin = $query->fetch(PDO::FETCH_ASSOC);
     $adminNom = $admin ? htmlspecialchars($admin['nom']) : 'Aucun administrateur trouvé';
 
