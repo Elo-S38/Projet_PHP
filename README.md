@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="association/php/Logo.png" alt="Logo" width="400">
+  <img src="association/php/Logo.png" alt="Logo" width="200">
 </p>
 
 
