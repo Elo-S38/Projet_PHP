@@ -38,7 +38,7 @@ try {
 		$sumByTypeDechet[$type_dechet] += $quantiteKg;
 	}
 
-	
+	var_dump(isset($sumByTypeDechet));
 
     $admin = $query->fetch(PDO::FETCH_ASSOC);
     $adminNom = $admin ? htmlspecialchars($admin['nom']) : 'Aucun administrateur trouvé';
@@ -161,7 +161,7 @@ error_reporting(E_ALL);
     const ctx = document.getElementById('monDonut').getContext('2d');
 
     // Données PHP converties en format JavaScript
-		if (<?php if (isset($sumByTypeDechet)) {echo 'true';} else {echo 'false';} ?> == true)
+		if (<?php if (isset($sumByTypeDechet)) {echo 'true';} else {echo 'false';} ?>)
 		{
 			const labels = <?php if (isset($sumByTypeDechet)) {echo json_encode(array_keys($sumByTypeDechet));} else {echo '[]';} ?>;
 			const dataValues = <?php if (isset($sumByTypeDechet)) {echo json_encode(array_values($sumByTypeDechet));} else {echo '[]';} ?>;
@@ -199,7 +199,6 @@ error_reporting(E_ALL);
 				}
 			});
 		}
-		<?php var_dump("test"); ?>
 </script>
 
     </div>
