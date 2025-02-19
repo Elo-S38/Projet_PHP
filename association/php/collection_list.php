@@ -117,8 +117,8 @@ error_reporting(E_ALL);
             <div class="bg-white p-6 rounded-lg shadow-lg w-full hover:border-2 border-blue-400 p-4">
 
                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Dernière Collecte</h3>
-                <p class="text-lg text-gray-600"><?= htmlspecialchars($collectes[0]['lieu']) ?></p>
-                <p class="text-lg text-gray-600"><?= date('d/m/Y', strtotime($collectes[0]['date_collecte'])) ?></p>
+                <p class="text-lg text-gray-600"><?= isset($collectes[0]['lieu']) ? htmlspecialchars($collectes[0]['lieu']) : "pas de collecte" ?></p>
+                <p class="text-lg text-gray-600"><?= isset($collectes[0]['date_collecte']) ? date('d/m/Y', strtotime($collectes[0]['date_collecte'])) : NULL ?></p>
             </div>
             <!-- Bénévole Responsable -->
             <div class="bg-white p-6 rounded-lg shadow-lg w-full hover:border-2 border-blue-400 p-4">
@@ -130,7 +130,7 @@ error_reporting(E_ALL);
             <div class="bg-white p-6 rounded-lg shadow-lg w-full hover:border-2 border-blue-400 p-4">
 
                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Total des déchets collectés</h3>
-                <p class="text-lg text-gray-600"><?= round($poids_total[0]["SUM(quantite_kg)"], 2) . " kg"?></p>
+                <p class="text-lg text-gray-600"><?= (isset($poids_total[0]["SUM(quantite_kg)"])) ? round($poids_total[0]["SUM(quantite_kg)"], 2)  . " kg" : "pas de déchets collectés" ?></p>
             </div>
 
 <!-- Totaux des déchets collectés par type de déchets et Donut (en utilisant Flexbox) -->
@@ -140,9 +140,12 @@ error_reporting(E_ALL);
         <div class="flex flex-col items-center space-y-3">
             <?php
             // Affichage des quantités par type de déchet
-            foreach ($sumByTypeDechet as $type_dechet => $quantite) {
+						if (isset($sumByTypeDechet))
+						{
+							foreach ($sumByTypeDechet as $type_dechet => $quantite) {
                 echo "<p class='text-2xl font-semibold text-white'>$type_dechet : $quantite kg</p>";
-            }
+            	}
+						}
             ?>
         </div>
     </div>
@@ -158,42 +161,45 @@ error_reporting(E_ALL);
     const ctx = document.getElementById('monDonut').getContext('2d');
 
     // Données PHP converties en format JavaScript
-		const labels = <?php echo json_encode(array_keys($sumByTypeDechet)); ?>;
-		const dataValues = <?php echo json_encode(array_values($sumByTypeDechet)); ?>;
+		if (<?php if (isset($sumByTypeDechet)) {echo 'true';} else {echo 'false';} ?> == true)
+		{
+			const labels = <?php if (isset($sumByTypeDechet)) {echo json_encode(array_keys($sumByTypeDechet));} else {echo '[]';} ?>;
+			const dataValues = <?php if (isset($sumByTypeDechet)) {echo json_encode(array_values($sumByTypeDechet));} else {echo '[]';} ?>;
 
-		new Chart(ctx, {
-			type: 'doughnut', // Le type 'doughnut' pour un donut
-			data: {
-				labels: labels, // Utilisation des labels (types de déchets)
-				datasets: [{
-					data: dataValues, // Utilisation des valeurs des quantités
-					backgroundColor: ['#ce6a6b', '#36A2EB', '#ffbd59', '#399140', '#513653'], // Couleurs personnalisées
-					borderColor: '#000000', // Bordure noire sur chaque part
-					borderWidth: 1, // Épaisseur de la bordure
-					hoverOffset: 4 // Effet de survol qui agrandit légèrement le secteur
-				}]
-			},
-			options: {
-			responsive: false,
-			plugins: {
-				legend: {
-					position: 'left',
-					labels: {
-						color: 'black',
-						font: {
-							size: 20 // Taille de police des légendes
+			new Chart(ctx, {
+				type: 'doughnut', // Le type 'doughnut' pour un donut
+				data: {
+					labels: labels, // Utilisation des labels (types de déchets)
+					datasets: [{
+						data: dataValues, // Utilisation des valeurs des quantités
+						backgroundColor: ['#ce6a6b', '#36A2EB', '#ffbd59', '#399140', '#513653'], // Couleurs personnalisées
+						borderColor: '#000000', // Bordure noire sur chaque part
+						borderWidth: 1, // Épaisseur de la bordure
+						hoverOffset: 4 // Effet de survol qui agrandit légèrement le secteur
+					}]
+				},
+				options: {
+				responsive: false,
+				plugins: {
+					legend: {
+						position: 'left',
+						labels: {
+							color: 'black',
+							font: {
+								size: 20 // Taille de police des légendes
+							}
+						}
+						
+					},
+					title: {
+						display: false,
+						text: 'Répartition des types de déchets collectés'
 						}
 					}
-					
-				},
-				title: {
-					display: false,
-					text: 'Répartition des types de déchets collectés'
-					}
 				}
-			}
-		});
-    
+			});
+		}
+		<?php var_dump("test"); ?>
 </script>
 
     </div>
