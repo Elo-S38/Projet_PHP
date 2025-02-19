@@ -6,8 +6,16 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
 	if ($_SESSION["user_id"] == $id)
 	{
-		header("Location: volunteer_list.php?delete=1");
-		exit;
+		if ($_SESSION["role"] === "participant")
+		{
+			header("Location: volunteer_list.php");
+			exit;
+		}
+		elseif ($_SESSION["role"] === "admin")
+		{
+			header("Location: admin_list.php");
+			exit;
+		}
 	}
     try {
         $pdo->beginTransaction();
@@ -26,9 +34,16 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
 		$pdo->commit();
 
-		header("Location: volunteer_list.php?success=1");
+		if ($_SESSION["role"] === "participant")
+		{
+			header("Location: volunteer_list.php?success=1");
+		}
+		elseif ($_SESSION["role"] === "admin")
+		{
+			header("Location: admin_list.php?success=1");
+		}
 		echo "Record and its related references were successfully deleted.";
-		} 
+	} 
 	catch (PDOException $e) {
         die("Erreur: " . $e->getMessage());
     }
