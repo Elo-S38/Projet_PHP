@@ -3,8 +3,16 @@ require 'config.php';
 require 'verify_login.php';
 
 if (!isset($_GET['id']) || empty($_GET['id'])) {
-    header("Location: volunteer_list.php");
-    exit;
+    if ($_SESSION["role"] === "participant")
+	{
+		header("Location: volunteer_list.php");
+		exit;
+	}
+    elseif ($_SESSION["role"] === "admin")
+	{
+		header("Location: admin_list.php");
+        exit;
+	}
 }
 
 $id = $_GET['id'];
@@ -14,8 +22,16 @@ $stmt->execute([$id]);
 $benevole = $stmt->fetch();
 
 if (!$benevole) {
-    header("Location: volunteer_list.php");
-    exit;
+    if ($_SESSION["role"] === "participant")
+	{
+		header("Location: volunteer_list.php");
+		exit;
+	}
+    elseif ($_SESSION["role"] === "admin")
+	{
+		header("Location: admin_list.php");
+        exit;
+	}
 }
 
 // Mettre à jour la collecte
@@ -27,8 +43,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt = $pdo->prepare("UPDATE benevoles SET nom = ?, email = ?, role = ? WHERE id = ?");
     $stmt->execute([$nom, $email, $role, $id]);
 
-    header("Location: volunteer_list.php");
-    exit;
+    if ($_SESSION["role"] === "participant")
+	{
+		header("Location: volunteer_list.php");
+		exit;
+	}
+    elseif ($_SESSION["role"] === "admin")
+	{
+		header("Location: admin_list.php");
+        exit;
+	}
 }
 
 ?>
@@ -83,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </select>
                 </div>
                 <div class="flex justify-end space-x-4">
-                    <a href="volunteer_list.php" class="bg-gray-500 text-white px-4 py-2 font-bold rounded-lg">Annuler</a>
+                    <a href="<?= ($_SESSION["role"] === "admin") ? 'admin_list.php' : 'volunteer_list.php' ?>" class="bg-gray-500 text-white px-4 py-2 font-bold rounded-lg">Annuler</a>
                     <button type="submit" class="bg-cyan-700 font-bold hover:bg-[#005a8d] text-white px-4 py-2 rounded-lg">Modifier</button>
                 </div>
             </form>
