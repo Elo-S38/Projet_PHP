@@ -138,12 +138,12 @@ error_reporting(E_ALL);
         <div class="flex flex-col items-center space-y-3">
             <?php
             // Affichage des quantités par type de déchet
-						if (isset($sumByTypeDechet))
-						{
-							foreach ($sumByTypeDechet as $type_dechet => $quantite) {
-                echo "<p class='text-2xl font-semibold text-white'>$type_dechet : $quantite kg</p>";
-            	}
-						}
+				if (isset($sumByTypeDechet))
+				{
+					foreach ($sumByTypeDechet as $type_dechet => $quantite) {
+						echo "<p class='text-2xl font-semibold text-white'>$type_dechet : $quantite kg</p>";
+					}
+				}
             ?>
         </div>
     </div>
@@ -159,7 +159,7 @@ error_reporting(E_ALL);
     const ctx = document.getElementById('monDonut').getContext('2d');
 
     // Données PHP converties en format JavaScript
-		if (<?php if (isset($sumByTypeDechet)) {echo 'true';} else {echo 'false';} ?>)
+		if (<?php if (isset($sumByTypeDechet)) {echo true;} else {echo false;} ?>)
 		{
 			const labels = <?php if (isset($sumByTypeDechet)) {echo json_encode(array_keys($sumByTypeDechet));} else {echo '[]';} ?>;
 			const dataValues = <?php if (isset($sumByTypeDechet)) {echo json_encode(array_values($sumByTypeDechet));} else {echo '[]';} ?>;
