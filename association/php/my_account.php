@@ -45,7 +45,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
 	{
 		try
 		{
-			$password = password_hash($new_password, PASSWORD_DEFAULT);
+            if (!empty($new_password))
+            {
+                $password = password_hash($new_password, PASSWORD_DEFAULT);
+            }
+			else
+            {
+                $password = password_hash($current_password, PASSWORD_DEFAULT);
+            }
 			$stmt = $pdo->prepare("UPDATE benevoles SET nom = ?, email = ?, mot_de_passe = ? WHERE id = ?");
 			$stmt->execute([$name, $email, $password, $id]);
 
