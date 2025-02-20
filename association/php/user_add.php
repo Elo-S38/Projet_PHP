@@ -22,7 +22,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         die('Erreur lors de l\'insertion dans la base de données.');
     }
 
-    header("Location: volunteer_list.php");
+    if ($_SESSION["role"] === "participant")
+	{
+		header("Location: volunteer_list.php?success=1");
+	}
+	elseif ($_SESSION["role"] === "admin")
+	{
+		header("Location: admin_list.php?success=1");
+	}
     exit;
 }
 ?>
