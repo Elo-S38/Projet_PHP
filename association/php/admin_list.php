@@ -102,7 +102,7 @@ error_reporting(E_ALL);
                             <a href="volunteer_edit.php?id=<?= $benevole['id'] ?>" class="bg-cyan-700 font-bold hover:bg-[#005a8d] text-white px-4 py-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
                                 ✏️ Modifier
                             </a>
-                            <a href="volunteer_delete.php?id=<?= $benevole['id'] ?>" class="bg-red-700 font-bold hover:bg-red-900 text-white px-4 py-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette collecte ?');">
+                            <a href="volunteer_delete.php?id=<?= $benevole['id'] ?>" class="bg-red-700 font-bold hover:bg-red-900 text-white px-4 py-2 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce benevole ?');">
                                 🗑️ Supprimer
                             </a>
                         </td>
