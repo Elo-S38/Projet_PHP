@@ -51,6 +51,8 @@
 - Eco-conception
 
 - Déploiement
+
+- Gestion mot de passe oublié lors de la connexion
   
 
 
