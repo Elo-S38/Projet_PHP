@@ -51,8 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <!-- Partie droite : Formulaire (à compléter si besoin) -->
     <div class="flex-1 flex justify-center items-center bg-gray">
         <div class="bg-white p-12 rounded-lg shadow-2xl w-full sm:w-[600px] h-[400px]">        
-        
-     
 
         <?php if (!empty($error)) : ?>
             <div class="text-red-600 text-center mb-4">
