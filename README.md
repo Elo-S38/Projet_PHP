@@ -25,6 +25,24 @@
 
 - Gestion des déchets collectés
 
+##  **Screen du projet** :
+
+<div style="display: flex; justify-content: space-around;">
+<img src="association/Screen/PlayaClean_Page_authentification.png" alt="authentification" width="200">
+
+<img src="association/Screen/PlayaClean_TableaudeBord.png" alt="TableauDeBord" width="200">
+
+<img src="association/Screen/PlayaClean_ModifCollect.png" alt="ModifCollect" width="200">
+
+<img src="association/Screen/PlayaClean_ListeBenevoles.png" alt="ListBenevoles" width="200">
+
+<img src="association/Screen/PlayaClean_ModifBenevoles.png" alt="ModifBenevoles" width="200">
+
+<img src="association/Screen/PlayaClean_AjoutBenevole.png" alt="AjoutBenevole" width="200">
+
+<img src="association/Screen/PlayaClean_MonCompte.png" alt="MonCompte" width="200">
+</div>
+
 ## **Fonctionnalités principales (MVP)**: 
 
 ### 1. Gestion des bénévoles :
