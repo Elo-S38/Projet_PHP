@@ -46,6 +46,17 @@
 - Enregistrer les types et quantités de déchets collectés pour chaque collecte
 
 
+## **Fonctionnalités bonus**: 
+
+- Accessibilité
+  
+- Systeme d'authentification, connexion securisée, deconnexion
+  
+- Tableau de bord et statistique
+
+
+
+
 ## **Fonctionnalités futures**: 
   
 - Eco-conception
@@ -53,6 +64,8 @@
 - Déploiement
 
 - Gestion mot de passe oublié lors de la connexion
+
+- Gestion des sessions
   
 
 
