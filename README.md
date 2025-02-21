@@ -64,6 +64,8 @@
 - Déploiement
 
 - Gestion mot de passe oublié lors de la connexion
+
+- Gestion des sessions
   
 
 
